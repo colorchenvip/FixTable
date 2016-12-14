@@ -18,6 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FixTableActivity"
+            android:label="@string/activity_table"/>
     </application>
 
 </manifest>
