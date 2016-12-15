@@ -46,10 +46,10 @@ public class FixTableActivity extends AppCompatActivity {
         mListView1.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView absListView, int i) {
-                if (i == AbsListView.OnScrollListener.SCROLL_STATE_IDLE){
+                if (i == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
                     int lastVisiableItem = mListView1.getLastVisiblePosition();
-                    if (lastVisiableItem == mListView1.getAdapter().getCount() -1){
-                        Toast.makeText(getApplicationContext(),"最后一个",Toast.LENGTH_SHORT).show();
+                    if (lastVisiableItem == mListView1.getAdapter().getCount() - 1) {
+                        Toast.makeText(getApplicationContext(), "最后一个", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -65,6 +65,7 @@ public class FixTableActivity extends AppCompatActivity {
 
 
     }
+
     class ListViewAndHeadViewTouchLinstener implements View.OnTouchListener {
 
         @Override
@@ -81,13 +82,14 @@ public class FixTableActivity extends AppCompatActivity {
         private List<ItemBean> list = new ArrayList<ItemBean>();
         public List<ViewHolder> mHolderList = new ArrayList<ViewHolder>();
 
-        class ItemBean{
+        class ItemBean {
             String name1;
             String name2;
             String name3;
             String name4;
             String name5;
-            public ItemBean(String n1,String n2,String n3,String n4,String n5){
+
+            public ItemBean(String n1, String n2, String n3, String n4, String n5) {
                 this.name1 = n1;
                 this.name2 = n2;
                 this.name3 = n3;
@@ -96,24 +98,24 @@ public class FixTableActivity extends AppCompatActivity {
             }
         }
 
-        int id_row_layout;
+        int layoutId;
         LayoutInflater mInflater;
 
-        public MyAdapter(Context context, int id_row_layout) {
+        public MyAdapter(Context context, int layoutId) {
             super();
-            this.id_row_layout = id_row_layout;
+            this.layoutId = layoutId;
             mInflater = LayoutInflater.from(context);
 
             getData();
         }
 
-        private void getData(){
+        private void getData() {
             list.clear();
             for (int i = 0; i < 3; i++) {
-                list.add(new ItemBean("字段一","字段二 二师弟的大耳朵","12","class","这是一个测试字段 试一试有没有item自适应功能"));
-                list.add(new ItemBean("这是一个测试字段 试一试有没有item自适应功能","7","字段二 二师弟的大耳朵","字段四","字段五 阮小五"));
-                list.add(new ItemBean("这是一个测试字段 试一试有没有item自适应功能","7","字段二 二师弟的大耳朵","字段四","字段五 阮小五"));
-                list.add(new ItemBean("字段小⑦","字段六 诸葛小刘","字段二 二师弟的大耳朵","字段四","字段五 阮小五"));
+                list.add(new ItemBean("字段一", "字段二 二师弟的大耳朵", "12", "class", "这是一个测试字段 试一试有没有item自适应功能"));
+                list.add(new ItemBean("这是一个测试字段 试一试有没有item自适应功能", "7", "字段二 二师弟的大耳朵", "字段四", "字段五 阮小五"));
+                list.add(new ItemBean("这是一个测试字段 试一试有没有item自适应功能", "7", "字段二 二师弟的大耳朵", "字段四", "字段五 阮小五"));
+                list.add(new ItemBean("字段小⑦", "字段六 诸葛小刘", "字段二 二师弟的大耳朵", "字段四", "字段五 阮小五"));
             }
         }
 
@@ -137,7 +139,7 @@ public class FixTableActivity extends AppCompatActivity {
             ViewHolder holder = null;
             if (convertView == null) {
                 synchronized (FixTableActivity.this) {
-                    convertView = mInflater.inflate(id_row_layout, null);
+                    convertView = mInflater.inflate(layoutId, null);
                     holder = new ViewHolder();
 
                     MyHScrollView scrollView1 = (MyHScrollView) convertView
@@ -155,11 +157,8 @@ public class FixTableActivity extends AppCompatActivity {
                     holder.txt5 = (TextView) convertView
                             .findViewById(R.id.textView5);
 
-                    MyHScrollView headSrcrollView = (MyHScrollView) mHead
-                            .findViewById(R.id.horizontalScrollView1);
-                    headSrcrollView
-                            .AddOnScrollChangedListener((MyHScrollView.OnScrollChangedListener) new OnScrollChangedListenerImp(
-                                    scrollView1));
+                    MyHScrollView headSrcrollView = (MyHScrollView) mHead.findViewById(R.id.horizontalScrollView1);
+                    headSrcrollView.AddOnScrollChangedListener((MyHScrollView.OnScrollChangedListener) new OnScrollChangedListenerImp(scrollView1));
 
                     convertView.setTag(holder);
                     mHolderList.add(holder);
@@ -188,7 +187,9 @@ public class FixTableActivity extends AppCompatActivity {
             public void onScrollChanged(int l, int t, int oldl, int oldt) {
                 mScrollViewArg.smoothScrollTo(l, t);
             }
-        };
+        }
+
+        ;
 
         class ViewHolder {
             TextView txt1;
