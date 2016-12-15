@@ -10,9 +10,10 @@
     <ListView
         android:id="@+id/listView1"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/head"
         android:cacheColorHint="@android:color/transparent"
+        android:dividerHeight="0.5dp"
         android:divider="#808080" />
 
 </RelativeLayout>

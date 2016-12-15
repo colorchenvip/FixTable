@@ -29,20 +29,20 @@ public class FixTableActivity extends AppCompatActivity {
 
     ListView mListView1;
     MyAdapter myAdapter;
-    RelativeLayout mHead;
+    RelativeLayout tableTitleLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fix_table);
-        mHead = (RelativeLayout) findViewById(R.id.head);
-        mHead.setFocusable(true);
-        mHead.setClickable(true);
-        mHead.setBackgroundColor(Color.parseColor("#b2d235"));
-        mHead.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
+        tableTitleLayout = (RelativeLayout) findViewById(R.id.head);
+        tableTitleLayout.setFocusable(true);
+        tableTitleLayout.setClickable(true);
+        tableTitleLayout.setBackgroundColor(Color.parseColor("#b2d235"));
+        tableTitleLayout.setOnTouchListener(new ListViewAndHeadViewTouchListener());
 
         mListView1 = (ListView) findViewById(R.id.listView1);
-        mListView1.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
+        mListView1.setOnTouchListener(new ListViewAndHeadViewTouchListener());
         mListView1.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView absListView, int i) {
@@ -66,14 +66,14 @@ public class FixTableActivity extends AppCompatActivity {
 
     }
 
-    class ListViewAndHeadViewTouchLinstener implements View.OnTouchListener {
+    class ListViewAndHeadViewTouchListener implements View.OnTouchListener {
 
         @Override
         public boolean onTouch(View arg0, MotionEvent arg1) {
             //当在列头 和 listView控件上touch时，将这个touch的事件分发给 ScrollView
-            HorizontalScrollView headSrcrollView = (HorizontalScrollView) mHead
+            HorizontalScrollView headScrollView = (HorizontalScrollView) tableTitleLayout
                     .findViewById(R.id.horizontalScrollView1);
-            headSrcrollView.onTouchEvent(arg1);
+            headScrollView.onTouchEvent(arg1);
             return false;
         }
     }
@@ -154,11 +154,10 @@ public class FixTableActivity extends AppCompatActivity {
                             .findViewById(R.id.textView3);
                     holder.txt4 = (TextView) convertView
                             .findViewById(R.id.textView4);
-                    holder.txt5 = (TextView) convertView
-                            .findViewById(R.id.textView5);
 
-                    MyHScrollView headSrcrollView = (MyHScrollView) mHead.findViewById(R.id.horizontalScrollView1);
-                    headSrcrollView.AddOnScrollChangedListener((MyHScrollView.OnScrollChangedListener) new OnScrollChangedListenerImp(scrollView1));
+
+                    MyHScrollView headerScrollView = (MyHScrollView) tableTitleLayout.findViewById(R.id.horizontalScrollView1);
+                    headerScrollView.AddOnScrollChangedListener( new OnScrollChangedListenerImp(scrollView1));
 
                     convertView.setTag(holder);
                     mHolderList.add(holder);
